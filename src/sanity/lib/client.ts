@@ -1,18 +1,20 @@
 import { createClient, type SanityClient } from 'next-sanity'
-import { apiVersion, dataset, projectId} from '../env'
+
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "demo-project";
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2023-01-01";
 
 export function getClient(preview?: { token: string }): SanityClient {
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: "production",
-  apiVersion: "2021-10-21",
-  // token: process.env.SANITY_API_WRITE_TOKEN,
+  projectId,
+  dataset,
+  apiVersion,
   token: process.env.SANITY_API_TOKEN,
-  useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  useCdn: false,
   perspective: 'published',
-  stega: { // Stega config if using Visual Editing
+  stega: {
      enabled: false,
-     studioUrl: '/studio', // Or your Studio location
+     studioUrl: '/studio',
   },
 });
 if (preview) {

@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image";
 import ForAllHeroSections from '../../../components/ForAllHeroSections'
 
-export default function About() {
+function About() {
   return (
     <div>
         <ForAllHeroSections/>
@@ -113,3 +113,5 @@ export default function About() {
     </div>
   )
 }
+
+export default About;
