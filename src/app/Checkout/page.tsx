@@ -180,7 +180,16 @@ export default function CheckoutPage() {
       const data = await response.json();
       if (!data || Object.keys(data).length === 0) { setShippingError("No rates available."); setShippingOptions([]); return; }
       // Map rates
-      const formattedOptions: ShippingRateDetail[] = Object.entries(data).map(([key, value]) => ({ id: key, provider: key.toUpperCase().replace('_', ' '), amount: Number(value), logos: `/logos/${key.toLowerCase()}.png`, duration: "3-7 Days", service: "Std" }));
+      const DELIVERY_LABELS: Record<string, { provider: string; service: string; duration: string }> = {
+        standard_delivery:  { provider: "Standard Delivery",  service: "Our Delivery Riders", duration: "45–60 min" },
+        express_delivery:   { provider: "Express Delivery",   service: "Priority Dispatch",   duration: "20–30 min" },
+        scheduled_delivery: { provider: "Scheduled Delivery", service: "Your Chosen Time",    duration: "Flexible"  },
+        pickup:             { provider: "Self Pickup",         service: "Collect In-Store",    duration: "Ready in 15 min" },
+      };
+      const formattedOptions: ShippingRateDetail[] = Object.entries(data).map(([key, value]) => {
+        const meta = DELIVERY_LABELS[key] ?? { provider: key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()), service: "Restaurant Delivery", duration: "45–60 min" };
+        return { id: key, provider: meta.provider, service: meta.service, amount: Number(value), duration: meta.duration };
+      });
       setShippingOptions(formattedOptions);
     } catch (error) { console.error("Shipping fetch error:", error); setShippingError(error instanceof Error ? error.message : "Unknown shipping error."); setShippingOptions([]); }
     finally { setLoadingShipping(false); }
@@ -337,7 +346,7 @@ export default function CheckoutPage() {
 
   // --- JSX Rendering ---
   return (
-    <>
+    <div className="main-content">
       <ForAllHeroSections />
 
       {/* Loading Overlay */}
@@ -508,6 +517,6 @@ export default function CheckoutPage() {
         .loader { width: 40px; height: 40px; border: 4px solid #e5e7eb; border-top: 4px solid #ff9f0d; border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       `}</style>
-    </>
+    </div>
   );
 }

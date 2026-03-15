@@ -4,7 +4,7 @@ import ForAllHeroSections from "../../../components/ForAllHeroSections";
 
 export default function SignInPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="main-content min-h-screen bg-black">
       {/* Header */}
       
       <ForAllHeroSections/>

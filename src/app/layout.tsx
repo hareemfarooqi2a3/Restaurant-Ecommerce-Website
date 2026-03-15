@@ -3,6 +3,13 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "../../components/Footer";
 import DynamicNavbar from "../../components/DynamicNavbar";
+<<<<<<< Updated upstream
+=======
+import AIChatbot from "../../components/AIChatbot";
+import MarketingPopup from "../../components/MarketingPopup";
+import GlobalEffects from "../../components/GlobalEffects";
+import PageLoader from "../../components/PageLoader";
+>>>>>>> Stashed changes
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,8 +24,15 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "FoodTuck",
-  description: "Customized & International Cuisine Delivery Q-Commerce",
+  title: "FoodTuck — International Cuisine Delivered Fresh",
+  description:
+    "Order restaurant-quality international cuisine online. Freshly prepared, carefully packed, delivered fast. Track your order in real time.",
+  keywords: "food delivery, restaurant, international cuisine, online order, fresh food",
+  openGraph: {
+    title: "FoodTuck — International Cuisine Delivered Fresh",
+    description: "Fresh flavors, fast delivery — right at your doorstep.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -29,9 +43,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <PageLoader />
         <DynamicNavbar>
+<<<<<<< Updated upstream
           {children}
           <Footer />
+=======
+          <GlobalEffects>
+            {children}
+            <Footer />
+          </GlobalEffects>
+          <AIChatbot />
+          <MarketingPopup />
+>>>>>>> Stashed changes
         </DynamicNavbar>
       </body>
     </html>

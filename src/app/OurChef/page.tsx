@@ -62,7 +62,7 @@ export default function OurChef() {
   }, []);
 
   return (
-    <div>
+    <div className="main-content">
       <ForAllHeroSections />
       <div className="px-40 py-20">
         {isLoading ? (

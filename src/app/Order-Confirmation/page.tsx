@@ -256,7 +256,7 @@ function OrderConfirmationContent() {
 // --- Main Page Component ---
 export default function OrderConfirmationPage() {
   return (
-    <div className="min-h-screen  text-gray-300"> {/* Added gradient */}
+    <div className="main-content min-h-screen text-gray-300"> {/* Added gradient */}
         <Suspense fallback={ <div className="flex items-center justify-center min-h-[50vh] text-gray-500 dark:text-gray-400"><Loader2 className="animate-spin h-12 w-12" /> Loading Confirmation...</div> }>
             <OrderConfirmationContent />
         </Suspense>

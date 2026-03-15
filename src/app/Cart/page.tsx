@@ -60,7 +60,7 @@ export default function ShoppingCart() {
   const totalAmount = cartSubtotal - cartSubtotal * discount + shippingCharges;
 
   return (
-    <div className="min-h-screen bg-black px-4 py-8 sm:px-8 md:px-12 lg:px-16">
+    <div className="main-content min-h-screen bg-black px-4 py-8 sm:px-8 md:px-12 lg:px-16">
       <div className="max-w-screen-lg mx-auto">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">Shopping Cart</h1>
 

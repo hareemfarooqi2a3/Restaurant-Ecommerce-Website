@@ -3,16 +3,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// Initialize Stripe (ensure secret key and apiVersion are correct)
+// IMPORTANT:
+// Avoid throwing at module import time (Next may evaluate route modules during build).
+// Initialize Stripe lazily inside the handler so builds can succeed without Stripe env vars.
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-if (!stripeSecretKey) {
-  throw new Error("Stripe secret key is required");
+function getStripe() {
+  if (!stripeSecretKey) return null;
+  return new Stripe(stripeSecretKey, {
+    apiVersion: "2025-02-24.acacia",
+    typescript: true,
+  });
 }
-
-const stripe = new Stripe(stripeSecretKey, {
-  apiVersion: "2025-02-24.acacia",
-  typescript: true,
-});
 
 export async function POST(req: NextRequest) {
   console.log("API Route /api/payment/verify-session hit");
@@ -21,6 +22,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const stripe = getStripe();
+    if (!stripe) {
+      return NextResponse.json(
+        { error: "Stripe secret key is required (missing STRIPE_SECRET_KEY)." },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
     const sessionId = body.sessionId;
 

@@ -43,7 +43,7 @@ const WishList: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-grey-900 shadow-md rounded-lg mb-36">
+    <div className="main-content container mx-auto p-6 bg-grey-900 shadow-md rounded-lg mb-36">
       <h1 className="text-3xl font-bold text-gray-100 mb-6 text-center">WishList</h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-200">

@@ -17,13 +17,66 @@ type Product = {
 };
 
 // Initialize Sanity Client
+const sanityProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "demo-project";
+const sanityDataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const sanityClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: sanityProjectId,
+  dataset: sanityDataset,
   apiVersion: "2023-01-01",
   token: process.env.SANITY_API_TOKEN,
   useCdn: false,
 });
+
+const MOCK_PRODUCTS: Product[] = [
+  {
+    _id: "1",
+    name: "Classic Burger",
+    slug: "classic-burger",
+    price: 12.99,
+    originalPrice: 15.99,
+    image: "/burger.png",
+    description: "Juicy, classic, and always satisfying.",
+    tags: ["burger", "classic"],
+    available: true,
+    category: "Burgers",
+  },
+  {
+    _id: "2",
+    name: "Margherita Pizza",
+    slug: "margherita-pizza",
+    price: 15.99,
+    originalPrice: 0,
+    image: "/pizza.png",
+    description: "Fresh basil, mozzarella, and tomato sauce.",
+    tags: ["pizza", "italian"],
+    available: true,
+    category: "Pizza",
+  },
+  {
+    _id: "3",
+    name: "Chicken Pasta",
+    slug: "chicken-pasta",
+    price: 13.99,
+    originalPrice: 0,
+    image: "/pasta.png",
+    description: "Creamy pasta with tender chicken.",
+    tags: ["pasta"],
+    available: true,
+    category: "Pasta",
+  },
+  {
+    _id: "4",
+    name: "Caesar Salad",
+    slug: "caesar-salad",
+    price: 9.99,
+    originalPrice: 11.99,
+    image: "/food.png",
+    description: "Crisp romaine with classic Caesar dressing.",
+    tags: ["salad"],
+    available: true,
+    category: "Salads",
+  },
+];
 
 const SearchPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,6 +88,11 @@ const SearchPage: React.FC = () => {
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
+        if (sanityProjectId === "demo-project") {
+          setSuggestions(MOCK_PRODUCTS);
+          return;
+        }
+
         const query = `*[_type == "food"]{
           _id,
           name,
@@ -51,6 +109,7 @@ const SearchPage: React.FC = () => {
         setSuggestions(result);
       } catch (error) {
         console.error("Error fetching products from Sanity:", error);
+        setSuggestions(MOCK_PRODUCTS);
       }
     };
 
@@ -67,6 +126,17 @@ const SearchPage: React.FC = () => {
 
       try {
         setIsSearching(true);
+
+        if (sanityProjectId === "demo-project") {
+          const q = searchQuery.trim().toLowerCase();
+          const filtered = MOCK_PRODUCTS.filter((p) =>
+            p.name.toLowerCase().includes(q)
+          );
+          setProducts(filtered);
+          setIsSearching(false);
+          return;
+        }
+
         const query = `*[_type == "food" && name match "${searchQuery}*"]{
           _id,
           name,
@@ -84,6 +154,11 @@ const SearchPage: React.FC = () => {
         setIsSearching(false);
       } catch (error) {
         console.error("Error fetching filtered products:", error);
+        const q = searchQuery.trim().toLowerCase();
+        const filtered = MOCK_PRODUCTS.filter((p) =>
+          p.name.toLowerCase().includes(q)
+        );
+        setProducts(filtered);
         setIsSearching(false);
       }
     };
@@ -97,7 +172,7 @@ const SearchPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="main-content p-6">
       <h1 className="text-2xl font-bold mb-4">Search Products</h1>
       <input
         type="text"

@@ -5,7 +5,7 @@ import ForAllHeroSections from "../../../components/ForAllHeroSections";
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="main-content min-h-screen bg-black">
 
       <ForAllHeroSections/>
 

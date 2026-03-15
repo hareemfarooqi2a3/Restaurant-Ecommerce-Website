@@ -5,22 +5,22 @@ const SidebarOnBlog = () => {
   const recentPosts = [
     {
       img: "/RecentPostOnBlog1.png",
-      title: "Lorem Ipsum Dolor Sit Amet",
+      title: "5-minute lunch ideas you can customize",
       date: "June 22, 2020",
     },
     {
       img: "/RecentPostOnBlog2.png",
-      title: "Consectetur Adipiscing Elit",
+      title: "Spice levels explained: mild to extra hot",
       date: "June 22, 2020",
     },
     {
       img: "/RecentPostOnBlog3.png",
-      title: "Sed Do Eiusmod Tempor",
+      title: "How we pack meals to stay fresh longer",
       date: "June 22, 2020",
     },
     {
       img: "/RecentPostOnBlog4.png",
-      title: "Labore Et Dolore Magna",
+      title: "Top-rated desserts to finish your order",
       date: "June 22, 2020",
     },
   ];
@@ -95,7 +95,7 @@ const SidebarOnBlog = () => {
         </div>
 
         <p className="text-sm text-gray-100 mb-5">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis distinctio, odio eligendi suscipit reprehenderit atque.
+          Food photography and honest reviews from the FoodTuck kitchen—new launches, seasonal picks, and quick tips for ordering smarter.
         </p>
 
         <div className="flex justify-center space-x-4">
@@ -190,8 +190,22 @@ const SidebarOnBlog = () => {
       {/* Follow Us */}
       <div className="p-5 border border-gray-300 rounded-lg">
         <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
-        <div className="flex justify-center">
-          <img src="/FollowUsOnBlog.png" alt="Follow Us" />
+        <div className="flex justify-center gap-4">
+          {[
+            { name: "Facebook", src: "/Facebook.png" },
+            { name: "Twitter", src: "/Twitter.png" },
+            { name: "Pinterest", src: "/Pinterest.png" },
+            { name: "Instagram", src: "/Instagram.png" },
+          ].map((icon) => (
+            <a
+              key={icon.name}
+              href="#"
+              aria-label={icon.name}
+              className="w-10 h-10 rounded-md bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center"
+            >
+              <img src={icon.src} alt={icon.name} className="w-4 h-4" />
+            </a>
+          ))}
         </div>
       </div>
     </aside>

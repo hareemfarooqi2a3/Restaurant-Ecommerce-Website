@@ -9,14 +9,14 @@ import DesertsOnMenu from '../../../components/DesertsOnMenu'
 
 export default function MenuPage() {
   return (
-    <div>
-        <ForAllHeroSections/>
-        <StarterMenu/>
-        <MainCourse/>
-        <Experience/>
-        <DesertsOnMenu/>
-        <DrinksOnMenu/>
-        <PartnersAndClients/>
+    <div className="main-content">
+        <ForAllHeroSections />
+        <StarterMenu />
+        <MainCourse />
+        <Experience />
+        <DesertsOnMenu />
+        <DrinksOnMenu />
+        <PartnersAndClients />
     </div>
   )
 }

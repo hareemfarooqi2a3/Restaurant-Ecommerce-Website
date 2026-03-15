@@ -46,7 +46,7 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="p-6">
+    <div className="main-content p-6">
       <h1 className="text-2xl font-bold mb-4">Payment Page</h1>
       <button
         className={`px-6 py-3 text-white font-bold rounded ${

@@ -124,7 +124,7 @@ function PaymentSuccessContent() {
 export default function PaymentSuccessPage() {
     return (
         // You might want a minimal layout here, or your standard one
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="main-content min-h-screen bg-gray-50 dark:bg-gray-900">
              {/* No need for ForAllHeroSections here usually */}
             <Suspense fallback={<div className="text-center p-20">Loading confirmation...</div>}>
                 <PaymentSuccessContent />

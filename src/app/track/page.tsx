@@ -216,7 +216,7 @@ function TrackingContent() {
 // Main Page Component with Suspense and Hero Section
 export default function TrackPage() { // Renamed component for clarity
     return (
-        <>
+        <div className="main-content">
             {/* Assuming ForAllHeroSections handles dark mode internally */}
             <ForAllHeroSections />
 
@@ -225,6 +225,6 @@ export default function TrackPage() { // Renamed component for clarity
                     <TrackingContent />
                 </Suspense>
             </div>
-        </>
+        </div>
     );
 }

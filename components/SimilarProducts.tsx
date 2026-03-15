@@ -16,6 +16,7 @@ import { Skeleton } from "../src/components/ui/skeleton";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Swiper modules installation
+// eslint-disable-next-line react-hooks/rules-of-hooks -- SwiperCore.use is not a React Hook; ESLint flags it due to the "use" name.
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 interface SimilarProductsProps {

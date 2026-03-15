@@ -7,13 +7,389 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
+=======
+html {
+  scroll-behavior: smooth;
+}
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 
+/* ─────────────────────────────────────────────────────────────
+   SITE-WIDE MICRO-INTERACTIONS
+───────────────────────────────────────────────────────────── */
+:where(a, button, [role="button"], input, textarea, select) {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
 
+:where(a, button, [role="button"]) {
+  -webkit-tap-highlight-color: transparent;
+}
 
+:where(a, button, [role="button"]):active {
+  transform: translateY(0.5px);
+}
+
+:where(a, button, [role="button"]):focus-visible,
+:where(input, textarea, select):focus-visible {
+  outline: 2px solid rgba(255, 159, 13, 0.85);
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PAGE TRANSITION  (GlobalEffects.tsx)
+───────────────────────────────────────────────────────────── */
+.page-transition {
+  will-change: opacity, transform, filter;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLL REVEAL  (GlobalEffects.tsx)
+───────────────────────────────────────────────────────────── */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(6px);
+}
+
+.reveal-on-scroll.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .reveal-on-scroll.reveal-in {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Z-INDEX HIERARCHY
+───────────────────────────────────────────────────────────── */
+.z-navbar      { z-index: 100; }
+.z-dropdown    { z-index: 200; }
+.z-modal       { z-index: 1000; }
+.z-chatbot     { z-index: 9999; }
+.z-notification{ z-index: 10000; }
+.z-loader      { z-index: 99999; }
+
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.fixed-element {
+  position: fixed;
+  z-index: var(--z-index, auto);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PAGE LOADER ANIMATIONS
+───────────────────────────────────────────────────────────── */
+@keyframes loader-spin {
+  to { transform: rotate(360deg); }
+}
+>>>>>>> Stashed changes
+
+@keyframes loader-plate-bounce {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-12px) scale(1.05); }
+}
+
+@keyframes loader-food-orbit {
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+@keyframes loader-progress {
+  0%   { width: 0%; }
+  20%  { width: 25%; }
+  50%  { width: 55%; }
+  80%  { width: 80%; }
+  100% { width: 100%; }
+}
+
+@keyframes loader-fade-out {
+  0%   { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes loader-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes loader-dots {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1); opacity: 1; }
+}
+
+.loader-plate { animation: loader-plate-bounce 1.4s ease-in-out infinite; }
+.loader-ring  { animation: loader-spin 1.2s linear infinite; }
+.loader-progress-bar { animation: loader-progress 2.5s ease-out forwards; }
+
+.loader-dot:nth-child(1) { animation: loader-dots 1.4s ease-in-out 0s infinite; }
+.loader-dot:nth-child(2) { animation: loader-dots 1.4s ease-in-out 0.2s infinite; }
+.loader-dot:nth-child(3) { animation: loader-dots 1.4s ease-in-out 0.4s infinite; }
+
+/* ─────────────────────────────────────────────────────────────
+   TYPEWRITER ANIMATION
+───────────────────────────────────────────────────────────── */
+@keyframes typewriter-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  background: #FF9F0D;
+  margin-left: 3px;
+  animation: typewriter-cursor 0.8s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   COUNTER NUMBER ANIMATION
+───────────────────────────────────────────────────────────── */
+@keyframes counter-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.counter-animate {
+  animation: counter-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FLOATING FOOD PARTICLES
+───────────────────────────────────────────────────────────── */
+@keyframes float-particle-1 {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.8; }
+  33%  { transform: translateY(-30px) translateX(15px) rotate(120deg); opacity: 1; }
+  66%  { transform: translateY(-15px) translateX(-10px) rotate(240deg); opacity: 0.6; }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); opacity: 0.8; }
+}
+
+@keyframes float-particle-2 {
+  0%   { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.6; }
+  50%  { transform: translateY(-40px) translateX(-20px) rotate(180deg); opacity: 1; }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); opacity: 0.6; }
+}
+
+@keyframes float-particle-3 {
+  0%   { transform: translateY(0px) scale(1); opacity: 0.7; }
+  50%  { transform: translateY(-25px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+}
+
+.particle-1 { animation: float-particle-1 6s ease-in-out infinite; }
+.particle-2 { animation: float-particle-2 8s ease-in-out infinite; }
+.particle-3 { animation: float-particle-3 5s ease-in-out infinite; }
+.particle-4 { animation: float-particle-1 7s ease-in-out infinite reverse; }
+.particle-5 { animation: float-particle-2 9s ease-in-out infinite reverse; }
+
+/* ─────────────────────────────────────────────────────────────
+   GOLDEN GLOW & GRADIENT TEXT
+───────────────────────────────────────────────────────────── */
+@keyframes golden-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 159, 13, 0.3), 0 0 40px rgba(255, 159, 13, 0.1); }
+  50%       { box-shadow: 0 0 30px rgba(255, 159, 13, 0.6), 0 0 60px rgba(255, 159, 13, 0.3); }
+}
+
+@keyframes gradient-text-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer-wave {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.golden-glow {
+  animation: golden-pulse 3s ease-in-out infinite;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(90deg, #FF9F0D, #FFD700, #FF6B35, #FF9F0D);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-text-shift 4s ease infinite;
+}
+
+.shimmer-btn {
+  background: linear-gradient(90deg, #FF9F0D 25%, #FFD700 50%, #FF9F0D 75%);
+  background-size: 200% 100%;
+  animation: shimmer-wave 2s linear infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   WAVE ANIMATION (section dividers)
+───────────────────────────────────────────────────────────── */
+@keyframes wave-flow {
+  0%   { transform: translateX(0) translateY(0); }
+  50%  { transform: translateX(-25px) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+.wave-animate {
+  animation: wave-flow 4s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CARD HOVER LIFT  (reusable class)
+───────────────────────────────────────────────────────────── */
+.card-lift {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 300ms ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(255, 159, 13, 0.2);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SLIDE-IN ANIMATIONS  (used in new sections)
+───────────────────────────────────────────────────────────── */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   STAR RATING ANIMATION
+───────────────────────────────────────────────────────────── */
+@keyframes star-fill {
+  0%   { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.star-animate {
+  animation: star-fill 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SPECIAL OFFER PULSE
+───────────────────────────────────────────────────────────── */
+@keyframes offer-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+.offer-pulse {
+  animation: offer-pulse 2s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TESTIMONIAL CARD SLIDE
+───────────────────────────────────────────────────────────── */
+@keyframes testimonial-in {
+  from { opacity: 0; transform: translateX(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.testimonial-enter {
+  animation: testimonial-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HOW IT WORKS STEP ANIMATION
+───────────────────────────────────────────────────────────── */
+@keyframes step-reveal {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-1 { animation: step-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.step-2 { animation: step-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.step-3 { animation: step-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+
+/* ─────────────────────────────────────────────────────────────
+   CONNECTOR LINE ANIMATION
+───────────────────────────────────────────────────────────── */
+@keyframes line-draw {
+  from { width: 0%; opacity: 0; }
+  to   { width: 100%; opacity: 1; }
+}
+
+.connector-line {
+  animation: line-draw 1s ease-out 0.8s both;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DELIVERY BADGE BOUNCE
+───────────────────────────────────────────────────────────── */
+@keyframes badge-bounce {
+  0%, 100% { transform: translateY(0); }
+  25%       { transform: translateY(-6px); }
+  75%       { transform: translateY(-3px); }
+}
+
+.badge-bounce {
+  animation: badge-bounce 2.5s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   NUMBER ROLL (for counters)
+───────────────────────────────────────────────────────────── */
+@keyframes number-roll {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.number-roll-in {
+  animation: number-roll 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SHADCN / TAILWIND VARIABLE BASE
+───────────────────────────────────────────────────────────── */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -40,7 +416,7 @@ body, html {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -66,13 +442,9 @@ body, html {
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
-
-
-
-
 
 @layer base {
   * {
@@ -82,4 +454,3 @@ body, html {
     @apply bg-background text-foreground;
   }
 }
-

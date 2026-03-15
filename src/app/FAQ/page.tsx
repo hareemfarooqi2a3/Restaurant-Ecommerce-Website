@@ -53,42 +53,42 @@ const FAQPage: React.FC = () => {
   };
 
   return (
-    <>
-    <div>
-    <ForAllHeroSections/>
-    </div>
+    <div className="main-content">
+      <div>
+        <ForAllHeroSections />
+      </div>
 
-    <div className="min-h-screen bg-black">
-      <main className="max-w-4xl mx-auto py-16 px-4">
-        <h2 className="text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-        <p className="text-center text-gray-100 mb-12">
-          Find answers to common questions about our customized & international cuisine delivery service.
-        </p>
+      <div className="min-h-screen bg-black">
+        <main className="max-w-4xl mx-auto py-16 px-4">
+          <h2 className="text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+          <p className="text-center text-gray-100 mb-12">
+            Find answers to common questions about our customized & international cuisine delivery service.
+          </p>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {faqData.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-grey-400 p-6 rounded-lg shadow-lg transition-transform duration-200"
-            >
+          <div className="grid gap-6 md:grid-cols-2">
+            {faqData.map((faq, index) => (
               <div
-                onClick={() => toggleFAQ(index)}
-                className="cursor-pointer flex justify-between items-center"
+                key={index}
+                className="bg-grey-400 p-6 rounded-lg shadow-lg transition-transform duration-200"
               >
-                <h3 className="text-lg font-medium">{faq.question}</h3>
-                <span className="text-2xl">
-                  {openIndex === index ? '-' : '+'}
-                </span>
+                <div
+                  onClick={() => toggleFAQ(index)}
+                  className="cursor-pointer flex justify-between items-center"
+                >
+                  <h3 className="text-lg font-medium">{faq.question}</h3>
+                  <span className="text-2xl">
+                    {openIndex === index ? '-' : '+'}
+                  </span>
+                </div>
+                {openIndex === index && (
+                  <p className="text-sm text-gray-100 mt-4">{faq.answer}</p>
+                )}
               </div>
-              {openIndex === index && (
-                <p className="text-sm text-gray-100 mt-4">{faq.answer}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </main>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
-    </>
   );
 };
 
