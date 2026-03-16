@@ -14,16 +14,6 @@ const HowItWorksSection = dynamic(() => import("../../components/HowItWorksSecti
 const TestimonialsSection = dynamic(() => import("../../components/TestimonialsSection"), { ssr: false });
 const SpecialOffersSection = dynamic(() => import("../../components/SpecialOffersSection"), { ssr: false });
 
-<<<<<<< Updated upstream
-function HomePage() {
-  return (
-    <>
-      <section className='bg-black px-3 md:px-[135px] flex flex-col justify-evenly md:flex-row  md:items-center py-[50px]'>
-         <div className='text-white w-full md:w-[50%]'>
-          <h1 className='md:text-[32px] text-[24px] font-normal text-[#FF9F0D] font whitespace-nowrap'>
-            Its Quick & Amazing!
-          </h1>
-=======
 // ── Typewriter hook ──────────────────────────────────────────────────────────
 const HERO_PHRASES = [
   "The Art of Speed Food Quality",
@@ -31,7 +21,6 @@ const HERO_PHRASES = [
   "Chef-Crafted Meals at Your Door",
   "From Our Kitchen to Your Table",
 ];
->>>>>>> Stashed changes
 
 function useTypewriter(phrases: string[], speed = 60, pause = 2200) {
   const [displayed, setDisplayed] = useState("");
@@ -63,17 +52,7 @@ function useTypewriter(phrases: string[], speed = 60, pause = 2200) {
     return () => clearTimeout(timeout);
   }, [charIdx, deleting, phraseIdx, phrases, speed, pause]);
 
-<<<<<<< Updated upstream
-    <HeroAboutus/>
-    <SimilarProductsSection currentProductId={'product._id'}/>
-    <FoodCategory/>
-    <HomePageExperience/>
-    <ChefOnHome/>
-    </>
-  )
-=======
   return displayed;
->>>>>>> Stashed changes
 }
 
 // ── Animated counter hook ────────────────────────────────────────────────────

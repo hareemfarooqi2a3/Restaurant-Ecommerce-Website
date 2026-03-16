@@ -6,7 +6,9 @@
       "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npx tsc --noEmit 2>&1 | grep -v \"validator.ts\" | grep -v \"generate-pdf\" | head -20)",
       "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npx tsc --noEmit 2>&1 | grep -v \"validator.ts\" | grep -v \"generate-pdf\" | head -15)",
       "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npm run build 2>&1 | tail -40)",
-      "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npx next dev --port 3001 2>&1 | head -20)"
+      "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npx next dev --port 3001 2>&1 | head -20)",
+      "Bash(cd \"D:\\\\projects\\\\Restaurant-Ecommerce-Website\" && npx tsc --noEmit 2>&1 | grep -v \"validator.ts\" | grep -v \"generate-pdf\")",
+      "Bash(cd \"D:/projects/Restaurant-Ecommerce-Website\" && npx tsc --noEmit 2>&1 | grep -v \"validator.ts\" | grep -v \"generate-pdf\")"
     ]
   }
 }

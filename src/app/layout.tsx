@@ -3,13 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "../../components/Footer";
 import DynamicNavbar from "../../components/DynamicNavbar";
-<<<<<<< Updated upstream
-=======
 import AIChatbot from "../../components/AIChatbot";
 import MarketingPopup from "../../components/MarketingPopup";
 import GlobalEffects from "../../components/GlobalEffects";
 import PageLoader from "../../components/PageLoader";
->>>>>>> Stashed changes
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -45,17 +42,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <PageLoader />
         <DynamicNavbar>
-<<<<<<< Updated upstream
-          {children}
-          <Footer />
-=======
           <GlobalEffects>
             {children}
             <Footer />
           </GlobalEffects>
           <AIChatbot />
           <MarketingPopup />
->>>>>>> Stashed changes
         </DynamicNavbar>
       </body>
     </html>

@@ -10,8 +10,6 @@ body, html {
   overflow-x: hidden;
 }
 
-<<<<<<< Updated upstream
-=======
 html {
   scroll-behavior: smooth;
 }
@@ -111,7 +109,6 @@ html {
 @keyframes loader-spin {
   to { transform: rotate(360deg); }
 }
->>>>>>> Stashed changes
 
 @keyframes loader-plate-bounce {
   0%, 100% { transform: translateY(0px) scale(1); }
