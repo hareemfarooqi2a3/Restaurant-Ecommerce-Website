@@ -3,7 +3,7 @@ import Image from "next/image";
 import ForAllHeroSections from '../../../components/ForAllHeroSections'
 import { Clock, ShieldCheck, Truck } from "lucide-react";
 
-export default function About() {
+function About() {
   return (
     <div className="main-content bg-black text-white">
         <ForAllHeroSections />
@@ -179,3 +179,5 @@ export default function About() {
     </div>
   )
 }
+
+export default About;

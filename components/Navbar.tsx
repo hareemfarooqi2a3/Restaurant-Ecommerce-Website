@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           ref={navRef}
           className={`${
             isMobileMenuOpen ? "block" : "hidden"
-          } absolute top-full left-0 w-full bg-black shadow-lg lg:flex lg:static lg:bg-transparent lg:w-auto lg:shadow-none lg:items-center z-50 opacity-90`}
+          } absolute top-full left-0 w-full bg-black shadow-lg lg:flex lg:static lg:bg-transparent lg:w-auto lg:shadow-none lg:items-center z-[100] opacity-90`}
         >
           <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-8 w-full lg:w-auto">
             <Link
@@ -145,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
                 About <FaChevronDown className="ml-1 inline text-sm transition-transform hover:rotate-180" />
               </button>
               {isAboutDropdownOpen && (
-                <div className="absolute left-0 top-full bg-black text-white font-bold py-4 px-6 rounded-md shadow-md space-y-2 w-40">
+                <div className="absolute left-0 top-full bg-black text-white font-bold py-4 px-6 rounded-md shadow-md space-y-2 w-40 z-[200]">
                   <Link href="/About" className="block hover:text-[#FF9F0D]" onClick={() => setIsAboutDropdownOpen(false)}>
                     About Us
                   </Link>
@@ -193,7 +193,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
               />
             </button>
             {isSearchDropdownOpen && (
-              <div className="absolute right-0 mt-2 bg-black text-black font-bold rounded-md shadow-lg p-4 w-64 transition-opacity duration-300 ease-in-out opacity-100">
+              <div className="absolute right-0 mt-2 bg-black text-black font-bold rounded-md shadow-lg p-4 w-64 transition-opacity duration-300 ease-in-out opacity-100 z-[200]">
                 <input
                   type="text"
                   placeholder="Search for items..."
@@ -228,7 +228,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
             </button>
 
             {isUserDropdownOpen && (
-              <div className="absolute bg-black text-white font-bold py-2 mt-2 rounded-md shadow-lg right-0 z-50 transition-transform duration-200 ease-in-out">
+              <div className="absolute bg-black text-white font-bold py-2 mt-2 rounded-md shadow-lg right-0 z-[200] transition-transform duration-200 ease-in-out">
                 <Link
                   href="/Login"
                   className="block px-6 py-2 hover:bg-[#FF9F0D] hover:text-black transition-all duration-200 ease-in-out"

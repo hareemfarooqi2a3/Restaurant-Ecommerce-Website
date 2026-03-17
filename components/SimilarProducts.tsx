@@ -54,46 +54,108 @@ const SimilarProductsSection: React.FC<SimilarProductsProps> = ({
       console.log("Fetching similar products excluding currentProductId:", currentProductId);
 
       try {
-        // --- Refined Query ---
-        // Fetches products, EXCLUDING the current one.
-        // LIMITS the number fetched (e.g., 10).
-        // TODO: Ideally, filter by category or tags for better relevance.
-        const query = `*[_type == "food" && _id != $currentProductId][0...10]{
-          _id,
-          name,
-          "slug": slug.current, // Directly get current slug
-          price,
-          originalPrice,
-          "image": image.asset->url
-        }`;
-        const params = { currentProductId };
-
-        const products = await client.fetch<any[]>(query, params);
-        console.log("Fetched potential similar products:", products);
-
-        if (!products) {
-             throw new Error("Received null response from Sanity fetch.");
-        }
-
-        // Map fetched data to Product interface
-        const mappedProducts: Product[] = products
-          .filter(p => p?._id && p?.slug && p?.name) // Basic validation
-          .map((product) => ({
+        // Check if we're using demo data
+        const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+        if (!projectId || projectId === 'demo-project') {
+          // Use mock data for demo
+          const mockProducts = [
+            {
+              _id: '1',
+              name: 'Classic Burger',
+              slug: 'classic-burger',
+              price: 12.99,
+              originalPrice: 15.99,
+              image: '/burger.png'
+            },
+            {
+              _id: '2', 
+              name: 'Margherita Pizza',
+              slug: 'margherita-pizza',
+              price: 15.99,
+              originalPrice: null,
+              image: '/pizza.png'
+            },
+            {
+              _id: '3',
+              name: 'Chicken Pasta',
+              slug: 'chicken-pasta', 
+              price: 13.99,
+              originalPrice: null,
+              image: '/pasta.png'
+            },
+            {
+              _id: '4',
+              name: 'Caesar Salad',
+              slug: 'caesar-salad',
+              price: 9.99,
+              originalPrice: 11.99,
+              image: '/food.png'
+            }
+          ];
+          
+          // Filter out current product and simulate async call
+          await new Promise(resolve => setTimeout(resolve, 500));
+          const filteredProducts = mockProducts.filter(p => p._id !== currentProductId);
+          console.log("Using mock similar products:", filteredProducts);
+          
+          // Map mock data to expected format
+          const mappedProducts: Product[] = filteredProducts.map((product) => ({
             id: product._id,
             slug: product.slug,
             name: product.name,
-            price: product.price ?? 0,
-            oldPrice: product.originalPrice ?? null,
-            image: product.image || "/placeholder-image.png",
-            isOnSale: product.originalPrice != null && product.price != null ? product.price < product.originalPrice : false,
+            price: product.price,
+            oldPrice: product.originalPrice,
+            image: product.image,
+            isOnSale: product.originalPrice != null && product.price < product.originalPrice,
           }));
+          
+          setSimilarProducts(mappedProducts);
+          return; // Exit early for mock data
+        } else {
+          // Real Sanity query
+          const query = `*[_type == "food" && _id != $currentProductId][0...10]{
+            _id,
+            name,
+            "slug": slug.current,
+            price,
+            originalPrice,
+            "image": image.asset->url
+          }`;
+          const params = { currentProductId };
 
-        setSimilarProducts(mappedProducts);
+          const products = await client.fetch<any[]>(query, params);
+          console.log("Fetched potential similar products:", products);
+
+          if (!products) {
+            throw new Error("Received null response from Sanity fetch.");
+          }
+          
+          // Map fetched data to Product interface
+          const mappedProducts: Product[] = products
+            .filter(p => p?._id && p?.name) // Basic validation
+            .map((product) => ({
+              id: product._id,
+              slug: product.slug || product.name.toLowerCase().replace(/\s+/g, '-'),
+              name: product.name,
+              price: product.price ?? 0,
+              oldPrice: product.originalPrice ?? null,
+              image: product.image || "/food.png",
+              isOnSale: product.originalPrice != null && product.price != null ? product.price < product.originalPrice : false,
+            }));
+
+          setSimilarProducts(mappedProducts);
+        }
 
       } catch (err) {
         console.error("Error fetching similar products:", err);
-        setError("Could not load similar products."); // Set user-friendly error
-        setSimilarProducts([]); // Clear products on error
+        // Don't show error for demo project, just use empty array
+        const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+        if (projectId === 'demo-project') {
+          setSimilarProducts([]);
+        } else {
+          setError("Could not load similar products.");
+          setSimilarProducts([]);
+        }
       } finally {
         setIsLoading(false);
       }
