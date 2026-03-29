@@ -31,7 +31,7 @@ export default function Contact() {
   };
 
   return (
-    <>
+    <div className="main-content">
       <ForAllHeroSections />
 
       <div className="min-h-screen bg-black p-8">
@@ -145,7 +145,7 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

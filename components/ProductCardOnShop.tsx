@@ -71,7 +71,10 @@ const ProductCardOnShop: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <div className="relative overflow-hidden group transition-shadow border border-gray-400 bg-white rounded-lg shadow-lg shadow-gray-400 hover:shadow-lg hover:hadow-gray-500">
+    <div
+      data-reveal="true"
+      className="relative overflow-hidden group border border-gray-200 bg-white rounded-lg shadow-md shadow-gray-300 transition-transform transition-shadow duration-300 will-change-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-400"
+    >
       {product.isOnSale && (
         <span className="absolute top-2 left-2 text-sm text-white bg-orange-500 rounded px-2 py-1 z-10">
           Sale

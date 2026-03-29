@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <>
-    <div className="min-h-screen bg-black">
+    <div className="main-content min-h-screen bg-black">
       
       {/* Signup Form Section */}
       <section className="bg-black p-10 relative pt-36 flex flex-col items-center">

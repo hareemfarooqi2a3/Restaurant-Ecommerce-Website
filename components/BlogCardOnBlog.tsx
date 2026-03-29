@@ -1,14 +1,25 @@
 import React from "react";
 
-const BlogCardOnBlog = ({ image, title, description }: any) => {
+const getDayMonth = (date?: string) => {
+  if (!date) return { day: "--", month: "--" };
+  const match = date.match(/([A-Za-z]{3,})\s+(\d{1,2})/);
+  if (!match) return { day: "--", month: "--" };
+  return { month: match[1].slice(0, 3), day: match[2] };
+};
+
+const BlogCardOnBlog = ({ image, title, description, date }: any) => {
+  const { day, month } = getDayMonth(date);
   return (
-    <div className="overflow-hidden pb-4">
+    <div
+      data-reveal="true"
+      className="overflow-hidden pb-4 rounded-lg transition-transform duration-300 will-change-transform hover:-translate-y-1"
+    >
       {/* Blog Image with Date Overlay */}
       <div className="relative">
         <img src={image} alt={title} className="w-full h-[300px] object-cover" />
         <div className="absolute top-3 left-3 bg-[#FF9F0D] text-white text-xs font-semibold rounded-md px-2 py-1 text-center w-12">
-          <span className="block text-base">14</span>
-          <span className="block text-xs">Feb</span>
+          <span className="block text-base">{day}</span>
+          <span className="block text-xs">{month}</span>
         </div>
       </div>
 
@@ -18,7 +29,7 @@ const BlogCardOnBlog = ({ image, title, description }: any) => {
         <div className="flex items-center text-sm text-gray-100 space-x-4 mb-3 pl-0">
           <span className="flex items-center">
             <img src="/CalendarOnBlog.png" alt="Calendar Icon" className="w-4 h-4 mr-1" />
-            Feb 14, 2022
+            <time dateTime={date ?? ""}>{date ?? "—"}</time>
           </span>
           <span className="flex items-center">
             <img src="/CommentsOnBlog.png" alt="Comments Icon" className="w-4 h-4 mr-1" />
@@ -37,7 +48,7 @@ const BlogCardOnBlog = ({ image, title, description }: any) => {
         <hr className="border-t border-gray-300 mb-5 mr-6" />
 
         {/* Blog Description */}
-        <p className="text-xs text-gray-100 leading-5 pl-0 pr-16">{description}</p>
+        <p className="text-sm text-white/80 leading-6 pl-0 pr-4">{description}</p>
 
         {/* Read More Button */}
         <a

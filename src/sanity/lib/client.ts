@@ -39,16 +39,6 @@ export const client: SanityClient = getClient();
 
 
 
-async function addSlugsToFoods() {
-  const foods = await client.fetch(`*[_type == "food" && !defined(slug)]`);
-  for (const food of foods) {
-    const slug = food.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    await client
-      .patch(food._id)
-      .set({ slug: { current: slug } })
-      .commit();
-    console.log(`Added slug "${slug}" to food: ${food.name}`);
-  }
-}
-
-addSlugsToFoods();
+// NOTE:
+// Do not run Sanity migrations/patches at module import time.
+// If you need a slug backfill, turn it into an explicit script/command instead.

@@ -101,7 +101,7 @@ function ShopPageContent() {
 
 
   return (
-    <>
+    <div className="main-content">
       <div>
         <ForAllHeroSections />
       </div>
@@ -157,7 +157,7 @@ function ShopPageContent() {
         </div>
 
       </div>
-    </>
+    </div>
   );
 }
 

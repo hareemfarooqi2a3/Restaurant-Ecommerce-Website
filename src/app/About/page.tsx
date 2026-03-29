@@ -1,104 +1,170 @@
 import React from 'react'
 import Image from "next/image";
 import ForAllHeroSections from '../../../components/ForAllHeroSections'
+import { Clock, ShieldCheck, Truck } from "lucide-react";
 
 function About() {
   return (
-    <div>
-        <ForAllHeroSections/>
+    <div className="main-content bg-black text-white">
+        <ForAllHeroSections />
 
         {/* First Section: Content and Buttons */}
-        <section className="text-white body-font">
-          <div className="container mx-auto flex px-5 py-24 items-center">
-            {/* Left Image */}
-            <div className="flex flex-col md:flex-row items-center md:space-x-4">
-              <Image
-                className="object-cover object-center w-[309px] h-[400px] rounded-lg"
-                alt="About Image"
-                src="/About1.png"
-                width={309} height={400}
-              />
-            </div>
+        <section className="body-font">
+          <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-24 py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              {/* Images */}
+              <div className="grid grid-cols-2 gap-4">
+                <Image
+                  className="object-cover object-center w-full h-[360px] rounded-lg col-span-1"
+                  alt="Freshly prepared dishes"
+                  src="/About1.png"
+                  width={520}
+                  height={720}
+                />
+                <div className="flex flex-col gap-4">
+                  <Image
+                    className="object-cover object-center w-full h-[170px] rounded-lg"
+                    alt="Chef-crafted meal"
+                    src="/about4.png"
+                    width={520}
+                    height={380}
+                  />
+                  <Image
+                    className="object-cover object-center w-full h-[170px] rounded-lg"
+                    alt="Seasonal salad bowl"
+                    src="/aboutt.png"
+                    width={520}
+                    height={380}
+                  />
+                </div>
+              </div>
 
-            {/* Right Images */}
-            <div className="flex flex-col space-y-2 mt-2 ml-4">
-              <Image
-                className="object-cover object-center w-[309px] h-[230px] rounded-lg"
-                alt="Image 2"
-                src="/about4.png"
-                width={309} height={230}
-              />
-              <Image
-                className="object-cover object-center w-[309px] h-[270px] rounded-lg"
-                alt="Image 3"
-                src="/aboutt.png"
-                width={309} height={270}
-              />
-            </div>
-
-            {/* Text Content */}
-            <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-              <h1 className="text-sm mb-4 font-medium text-yellow-400 italic">About us _____</h1>
-              <p className="text-white title-font text-3xl font-bold">Food is an important part of a balanced Diet</p>
-              <p className="mb-8 leading-relaxed mt-8 text-white">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.
-              </p>
-              <div className="flex justify-center">
-                <button className="inline-flex text-white bg-orange-400 border-0 py-2 px-3 focus:outline-none rounded text-lg">
-                  Show More
-                </button>
-                <button className="ml-4 inline-flex text-white border-0 py-2 px-3 focus:outline-none rounded text-lg">
-                  Watch video
-                </button>
+              {/* Text Content */}
+              <div className="flex flex-col items-start text-left">
+                <p className="text-sm mb-3 font-medium text-[#FF9F0D] italic tracking-wide">
+                  About us
+                </p>
+                <h2 className="title-font text-3xl sm:text-4xl font-bold leading-tight">
+                  Food that fits your day — fast, fresh, and customizable
+                </h2>
+                <p className="mt-6 text-white/80 leading-relaxed">
+                  We’re built for Q‑commerce: fast delivery, consistent quality, and meals tailored to your taste.
+                  Choose from international favorites, customize ingredients, and track your order end‑to‑end.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <button className="inline-flex text-black bg-[#FF9F0D] border-0 py-2.5 px-5 focus:outline-none rounded-full text-sm font-semibold hover:bg-[#ff9f0db8] transition-colors">
+                    Explore Menu
+                  </button>
+                  <button className="inline-flex text-white border border-white/20 py-2.5 px-5 focus:outline-none rounded-full text-sm font-semibold hover:border-white/40 hover:bg-white/5 transition-colors">
+                    Watch Story
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Second Section: Why Choose Us */}
-        <section className="text-white body-font">
-          <div className="container mx-auto flex px-5 py-6 items-center justify-center flex-col">
-            <h1 className="text-white text-3xl font-bold mt-1">Why Choose Us</h1>
-            <p className="text-white text-center mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.</p>
-            <Image
-              className="mb-10 object-cover object-center w-[1320px] h-[386px] mt-10"
-              alt="Why Choose Us"
-              src="/about.png"
-              width={1320} height={386}
-            />
+        <section className="body-font">
+          <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-24 py-16">
+            <div className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold">Why Choose Us</h2>
+              <p className="text-white/80 mt-3">
+                A better ordering experience from checkout to doorstep — designed for speed, safety, and satisfaction.
+              </p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              {/* Features */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="border border-white/15 rounded-xl p-5 bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-lg bg-[#FF9F0D]/15 flex items-center justify-center">
+                      <Truck className="w-5 h-5 text-[#FF9F0D]" />
+                    </span>
+                    <h3 className="font-semibold text-lg">Fast Delivery</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/75 leading-relaxed">
+                    Delivery optimized for speed with live tracking and instant status updates.
+                  </p>
+                </div>
+
+                <div className="border border-white/15 rounded-xl p-5 bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-lg bg-[#FF9F0D]/15 flex items-center justify-center">
+                      <ShieldCheck className="w-5 h-5 text-[#FF9F0D]" />
+                    </span>
+                    <h3 className="font-semibold text-lg">Secure Payments</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/75 leading-relaxed">
+                    Trusted checkout with clear totals, receipts, and safer transactions.
+                  </p>
+                </div>
+
+                <div className="border border-white/15 rounded-xl p-5 bg-white/5 hover:bg-white/10 transition-colors sm:col-span-2">
+                  <div className="flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-lg bg-[#FF9F0D]/15 flex items-center justify-center">
+                      <Clock className="w-5 h-5 text-[#FF9F0D]" />
+                    </span>
+                    <h3 className="font-semibold text-lg">Fresh, On‑Demand Cooking</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/75 leading-relaxed">
+                    Meals are prepared to order and packed carefully so they arrive hot, fresh, and delicious.
+                  </p>
+                </div>
+              </div>
+
+              {/* Supporting Image */}
+              <div className="relative w-full h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-white/10">
+                <Image
+                  className="object-cover"
+                  alt="Fresh meal selection"
+                  src="/about.png"
+                  fill
+                  priority={false}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Third Section: Team Members */}
-        <section className="text-white body-font">
-          <div className="container px-3 py-20 mx-auto">
+        <section className="body-font">
+          <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-24 py-16">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 md:w-1/3">
-                <div className="h-full flex justify-center items-center flex-col border-2 rounded-lg overflow-hidden">
+                <div className="h-full flex justify-center items-center flex-col border border-white/15 rounded-lg overflow-hidden bg-white/5 hover:bg-white/10 transition-colors">
                   <Image src="/Student.png" width={80} height={80} alt="Best Chef" />
                   <div className="p-6">
-                    <h1 className="title-font text-lg font-medium text-white mb-2 text-bold text-center">BEST CHEF</h1>
-                    <p className="leading-relaxed mb-3 text-center text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat</p>
+                    <h3 className="title-font text-lg font-semibold text-white mb-2 text-center">Expert Chefs</h3>
+                    <p className="leading-relaxed mb-3 text-center text-white/80 text-sm">
+                      Recipes crafted by experienced chefs for consistent taste in every order.
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="p-4 md:w-1/3">
-                <div className="h-full border-2 flex justify-center items-center flex-col rounded-lg overflow-hidden">
+                <div className="h-full border border-white/15 flex justify-center items-center flex-col rounded-lg overflow-hidden bg-white/5 hover:bg-white/10 transition-colors">
                   <Image src="/Coffee.png" width={80} height={80} alt="120 Item Food" />
                   <div className="p-6">
-                    <h1 className="title-font text-lg font-medium text-white mb-2 text-bold text-center">120 Item Food</h1>
-                    <p className="leading-relaxed mb-3 text-center text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat</p>
+                    <h3 className="title-font text-lg font-semibold text-white mb-2 text-center">Wide Menu</h3>
+                    <p className="leading-relaxed mb-3 text-center text-white/80 text-sm">
+                      International dishes, quick bites, and healthier options—something for everyone.
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="p-4 md:w-1/3">
-                <div className="h-full border-2 flex justify-center items-center flex-col rounded-lg overflow-hidden">
+                <div className="h-full border border-white/15 flex justify-center items-center flex-col rounded-lg overflow-hidden bg-white/5 hover:bg-white/10 transition-colors">
                   <Image src="/man.png" width={80} height={80} alt="Clean Environment" />
                   <div className="p-6">
-                    <h1 className="title-font text-lg font-medium text-white mb-2 text-bold text-center">Clean Environment</h1>
-                    <p className="leading-relaxed mb-3 text-center text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat</p>
+                    <h3 className="title-font text-lg font-semibold text-white mb-2 text-center">Quality & Hygiene</h3>
+                    <p className="leading-relaxed mb-3 text-center text-white/80 text-sm">
+                      Clean kitchens and careful packaging for a safer, better meal experience.
+                    </p>
                   </div>
                 </div>
               </div>

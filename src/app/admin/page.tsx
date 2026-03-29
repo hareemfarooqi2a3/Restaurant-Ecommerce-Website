@@ -5,7 +5,7 @@ import { Calendar, ShoppingBag, Users, BarChart3 } from "lucide-react";
 
 export default function AdminDashboard() {
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="main-content min-h-screen bg-gray-50 p-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Admin Dashboard</h1>
         

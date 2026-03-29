@@ -20,7 +20,7 @@ const Logout = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="main-content flex items-center justify-center min-h-screen bg-gray-900">
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4">Error</h1>
           <p className="text-red-500">{error}</p>
@@ -30,7 +30,7 @@ const Logout = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+    <div className="main-content flex items-center justify-center min-h-screen bg-gray-900">
       <div className="text-center">
         <h1 className="text-3xl font-bold mb-4">Logging out...</h1>
         <p className="text-gray-100">We are logging you out. Please wait.</p>
